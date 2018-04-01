@@ -11,12 +11,47 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    //var objects = [Any]()
-    var cities = [CityInfo(name: "Minsk"),
-                  CityInfo(name: "Molodechno")]
-
+     var cities: [CityInfo] = []//= [CityInfo(name: "Minsk"), CityInfo(name: "Molodechno")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //js parsing
+        print("hui 0")
+        let urlString = "https://htmlweb.ru/geo/api.php?city=1&json"
+        guard let url = URL(string: urlString) else {
+            print("hui")
+            return
+            
+        }
+        var task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            guard let data = data else {
+                return
+                
+            }
+            guard error == nil else {
+                print("hui 3")
+                return
+                
+            }
+            
+            do {
+                print("hui 5")
+                let city = try JSONDecoder().decode(CityInfo.self, from: data)
+                print("hui 4")
+                self.cities.append(city)
+            } catch let error {
+                print(error)
+            }
+            
+           
+        }
+        task.resume()
+        print (task)
+        
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
 //        navigationItem.leftBarButtonItem = editButtonItem
 //        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
@@ -77,7 +112,7 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityTableViewCell
 
         let city = cities[indexPath.row]
-        cell.cellNameLebel!.text = city.name
+        cell.cellNameLebel!.text = city.city
         return cell
     }
 

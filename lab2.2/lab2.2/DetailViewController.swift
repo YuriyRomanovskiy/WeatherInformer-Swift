@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     func configureView() {
         // Update the user interface for the detail item.
         loadViewIfNeeded()
-        detailNameLabel.text = detailItem?.name
+        detailNameLabel.text = detailItem?.city
         if let url = URL(string: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Herodot_und_Thukydides.jpg"){
             let imgData = NSData(contentsOf: url)
             detaioImageLabel.image = UIImage(data: imgData as! Data)
