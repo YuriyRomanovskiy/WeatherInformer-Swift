@@ -9,7 +9,7 @@
 import UIKit
 struct Country: Decodable {
     var name: String
-    var fullName: String
+    var fullname: String
     var english: String
     var id: String
     var country_code3: String
@@ -51,7 +51,7 @@ struct Capital: Decodable {
     var telcod: Float
     var latitude: Float
     var longitude: Float
-    var timezone: Int
+    var time_zone: Int
     var english: String
     var rajon: Int
     var country: String
@@ -73,9 +73,9 @@ struct CityInfo: Decodable {
     var city: String
     var city_english: String
     var city_telcod: Float
-    var lapitude: Float
+    var latitude: Float
     var longitude: Float
-    var autocod: Float
+    var autocod: String
     var fullname: String
     var english: String
     var iso: Int

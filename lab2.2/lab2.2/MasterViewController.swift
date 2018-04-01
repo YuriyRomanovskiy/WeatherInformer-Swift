@@ -41,6 +41,7 @@ class MasterViewController: UITableViewController {
                 let city = try JSONDecoder().decode(CityInfo.self, from: data)
                 print("hui 4")
                 self.cities.append(city)
+                
             } catch let error {
                 print(error)
             }
@@ -49,7 +50,6 @@ class MasterViewController: UITableViewController {
         }
         task.resume()
         print (task)
-        
         
         
         // Do any additional setup after loading the view, typically from a nib.
